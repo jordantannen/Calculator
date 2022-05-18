@@ -1,0 +1,15 @@
+.container, .calculator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator{
+    flex-direction: column;
+    border-style: solid;
+    width: 200px;
+}
+
+#buttons{
+    flex-direction: column;
+}
