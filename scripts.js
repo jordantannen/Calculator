@@ -35,6 +35,7 @@ function roundTwo(num){
 let liveDisplay = document.getElementById("display");
 let prevCalc = document.getElementById("prev-calc");
 let currentVal = null;
+let prevVal = null;
 let lastOpp = null;
 let newNum = true;
 
@@ -47,6 +48,7 @@ document.getElementById("clear").addEventListener("click", () => {
     liveDisplay.innerHTML = "0";
     prevCalc.innerHTML = "";
     currentVal = null;
+    prevVal = null;
     lastOpp = null;
     newNum = true;
 });
@@ -74,29 +76,25 @@ for (let i = 0; i < numButtons.length; i++){
 // Get opp button input
 for (let i = 0; i < oppButtons.length; i++){
     oppButtons[i].addEventListener("click", () => {
+        prevVal = liveDisplay.innerHTML;
         if (currentVal != null && lastOpp != "=") {
             liveDisplay.innerHTML = operate(currentVal, parseFloat(liveDisplay.innerHTML), lastOpp);
         }
         
         if (!isNaN(parseFloat(liveDisplay.innerHTML))){
             
-            console.log(currentVal);
-
+            currentVal = parseFloat(liveDisplay.innerHTML);
             lastOpp = oppButtons[i].innerHTML;
-            newNum = true;
+            
 
             if (lastOpp == "=" && newNum == false){
-                prevCalc.innerHTML += " = " + currentVal;
-                currentVal = parseFloat(liveDisplay.innerHTML);
-
+                prevCalc.innerHTML += prevVal + " " + "=";
             }
-                
-            else
-            {
-                currentVal = parseFloat(liveDisplay.innerHTML);
+            else if (currentVal != null && lastOpp != "="){
                 prevCalc.innerHTML = currentVal + " " + lastOpp + " ";
             }
-                
+            
+            newNum = true; 
         } 
     });
 }
