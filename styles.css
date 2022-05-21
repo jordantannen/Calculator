@@ -1,3 +1,15 @@
+body {
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #333333;
+    background-color: #F8F0E3;
+    height: 100%;
+}
+
+h1{
+    font-size: 60px;
+    margin-top: 80px;
+}
+
 .container, .calculator{
     display: flex;
     align-items: center;
@@ -6,10 +18,59 @@
 
 .calculator{
     flex-direction: column;
-    border-style: solid;
-    width: 200px;
+    justify-content: start;
+    height: 700px;
+    width: 500px;
+    margin-top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
 }
 
-#buttons{
+.buttons-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+#display-box{
+    background-color: #D3E4CD;
+    width: 400px;
+    height: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    align-items: flex-end;
     flex-direction: column;
+}
+
+#display{
+    padding: 40px;
+    margin-top: 30px;
+}
+
+#prev-calc{
+    font-size: 20px;
+    padding-right: 40px;
+    border-style: solid;
+    border-color: #D3E4CD;
+    height: 20px;
+}
+
+button{
+    flex-direction: column;
+    width: 92px;
+    height: 60px;
+    background-color: #D3E4CD;
+    border-style: none;
+    transition-duration: 0.3s;
+}
+
+button:hover{
+    background-color: #ADC2A9;
+}
+
+#clear, #delete{
+    width: 194px;
+    margin: 5px;
+    margin-bottom: 10px;
 }

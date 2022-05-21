@@ -33,6 +33,7 @@ function roundTwo(num){
 
 // Display and value holder variables
 let liveDisplay = document.getElementById("display");
+let prevCalc = document.getElementById("prev-calc");
 let currentVal = null;
 let lastOpp = null;
 let newNum = true;
@@ -43,14 +44,18 @@ let oppButtons = document.getElementsByClassName("opp-button");
 
 // Clear button
 document.getElementById("clear").addEventListener("click", () => {
+    liveDisplay.innerHTML = "0";
+    prevCalc.innerHTML = "";
     currentVal = null;
     lastOpp = null;
-    liveDisplay.innerHTML = "";
+    newNum = true;
 });
 
 // Delete button
 document.getElementById("delete").addEventListener("click", () => {
-    liveDisplay.innerHTML = Array.from(liveDisplay.innerHTML).splice(-1,1);
+    placeHolderArray = Array.from(liveDisplay.innerHTML);
+    placeHolderArray.pop();
+    liveDisplay.innerHTML = placeHolderArray.join("");
 });
 
 // Get num button input
@@ -60,8 +65,9 @@ for (let i = 0; i < numButtons.length; i++){
             liveDisplay.innerHTML = numButtons[i].innerHTML;
             newNum = false;
         }
-        else
+        else{
             liveDisplay.innerHTML += numButtons[i].innerHTML;
+        }
     });
 }
 
@@ -71,9 +77,26 @@ for (let i = 0; i < oppButtons.length; i++){
         if (currentVal != null && lastOpp != "=") {
             liveDisplay.innerHTML = operate(currentVal, parseFloat(liveDisplay.innerHTML), lastOpp);
         }
-        currentVal = parseFloat(liveDisplay.innerHTML);
-        lastOpp = oppButtons[i].innerHTML;
-        newNum = true;
+        
+        if (!isNaN(parseFloat(liveDisplay.innerHTML))){
+            
+            console.log(currentVal);
+
+            lastOpp = oppButtons[i].innerHTML;
+            newNum = true;
+
+            if (lastOpp == "=" && newNum == false){
+                prevCalc.innerHTML += " = " + currentVal;
+                currentVal = parseFloat(liveDisplay.innerHTML);
+
+            }
+                
+            else
+            {
+                currentVal = parseFloat(liveDisplay.innerHTML);
+                prevCalc.innerHTML = currentVal + " " + lastOpp + " ";
+            }
+                
+        } 
     });
 }
-
