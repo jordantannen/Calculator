@@ -1,7 +1,7 @@
 # Calculator #
 A simple web calculator
 
-Live preview: TBS
+Live preview: (https://jordantannen.github.io/Calculator/)
 
 ## Technologies Used ##
 * HTML
